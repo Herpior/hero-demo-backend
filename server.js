@@ -10,7 +10,7 @@ const port = process.env.PORT || 3001;
 const mongo_user = process.env.MONGODB_USER;
 const mongo_pw = process.env.MONGODB_PASSWORD;
 const mongo_url = process.env.MONGODB_URL;
-const mongo_db = "shoppingDatabase"
+const mongo_db = "heroDatabase"
 
 const connection_url = "mongodb+srv://"+mongo_user+":"+mongo_pw+"@"+mongo_url+"/"+mongo_db+"?retryWrites=true&w=majority";
 

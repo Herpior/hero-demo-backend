@@ -18,10 +18,20 @@ router.get("/heroes", function (req, res) {
 })
 
 router.post("/heroes", function (req, res) {
-    if (!req.body) {
+    if (!req.body || !req.body.name) {
         return res.status(400).json({ message: "Bad request" });
     }
-    return res.status(200).json({ message: "success" });
+
+    let hero = new heroModel({
+        name: req.body.name
+    })
+    hero.save(function (err) {
+        if (err) {
+            console.log("failed to save hero, err: " + err);
+            return res.status(500).json({ message: "internal server error" });
+        }
+        return res.status(201).json({ message: "success" });
+    })
 })
 
 router.delete("/heroes/:id", function (req, res) {
