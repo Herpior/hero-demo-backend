@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 let app = express();
 
+app.use(express.static("build"));
 app.use(express.json());
 
 const port = process.env.PORT || 3001;

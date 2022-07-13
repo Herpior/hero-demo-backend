@@ -6,8 +6,8 @@ let router = express.Router();
 //db
 
 router.get("/heroes", function (req, res) {
-    let query = {"user":req.session.user};
-    itemModel.find(query, function(err, items){
+    let query = {};
+    heroModel.find(query, function(err, items){
         if (err){
             console.log("error querying items, err: "+err);
             return res.status(500).json({message:"internal server error"});
