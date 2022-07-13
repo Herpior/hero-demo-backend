@@ -30,7 +30,7 @@ router.post("/heroes", function (req, res) {
             console.log("failed to save hero, err: " + err);
             return res.status(500).json({ message: "internal server error" });
         }
-        return res.status(201).json({ message: "success" });
+        return res.status(201).json(hero);
     })
 })
 
