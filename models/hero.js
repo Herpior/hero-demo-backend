@@ -4,4 +4,4 @@ const schema = mongoose.Schema({
     name: { index: true, type: String }
 })
 
-module.exports = mongoose.model("Item", schema);
+module.exports = mongoose.model("Hero", schema);
