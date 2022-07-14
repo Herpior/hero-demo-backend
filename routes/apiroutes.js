@@ -19,7 +19,7 @@ router.get("/heroes", function (req, res) {
 })
 router.get("/heroes/:id", function (req, res) {
     let query = {_id:req.params.id};
-    heroModel.find(query, function(err, hero){
+    heroModel.findOne(query, function(err, hero){
         if (err){
             console.log("error querying hero, err: "+err);
             return res.status(500).json({message:"internal server error"});
