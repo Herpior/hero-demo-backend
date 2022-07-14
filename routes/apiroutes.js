@@ -15,6 +15,7 @@ router.get("/heroes", function (req, res) {
         return res.status(200).json(items);
     })
     
+    
 })
 
 router.post("/heroes", function (req, res) {
@@ -35,7 +36,13 @@ router.post("/heroes", function (req, res) {
 })
 
 router.delete("/heroes/:id", function (req, res) {
-    return res.status(200).json({ message: "success" });
+    heroModel.deleteOne({"_id":req.params.id}, function(err){
+		if(err) {
+			console.log("Failed to remove Hero. Reason:", err);
+			return res.status(500).json({message:"Internal server error"});
+		}
+		return res.status(200).json({message:"Success!"});
+	})
     
 })
 
