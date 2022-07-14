@@ -17,6 +17,18 @@ router.get("/heroes", function (req, res) {
     
     
 })
+router.get("/heroes/:id", function (req, res) {
+    let query = {_id:req.params.id};
+    heroModel.find(query, function(err, hero){
+        if (err){
+            console.log("error querying hero, err: "+err);
+            return res.status(500).json({message:"internal server error"});
+        } 
+        return res.status(200).json(hero);
+    })
+    
+    
+})
 
 router.post("/heroes", function (req, res) {
     if (!req.body || !req.body.name) {
