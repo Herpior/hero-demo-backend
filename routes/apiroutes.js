@@ -7,14 +7,18 @@ let router = express.Router();
 
 router.get("/heroes", function (req, res) {
     let query = {};
+    let name = req.query.name;
+    if(name) {
+        query = { name: { $regex: req.query.name, $options: 'i' } };
+    }    
+    
     heroModel.find(query, function(err, items){
         if (err){
             console.log("error querying items, err: "+err);
             return res.status(500).json({message:"internal server error"});
         } 
         return res.status(200).json(items);
-    })
-    
+    })    
     
 })
 router.get("/heroes/:id", function (req, res) {
@@ -33,7 +37,6 @@ router.get("/heroes/:id", function (req, res) {
     
     
 })
-
 router.post("/heroes", function (req, res) {
     if (!req.body || !req.body.name) {
         return res.status(400).json({ message: "Bad request" });
